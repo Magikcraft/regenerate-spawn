@@ -1,0 +1,38 @@
+{
+	"name": "@magikcraft/regenerate-spawn",
+	"version": "0.0.1",
+	"main": "lib/index.ts",
+	"scripts": {
+		"test": "smac start -t -e",
+		"start": "tsc && concurrently --success first --handle-input \"smac start\" \"tsc -w\"",
+		"start:nukkit": "tsc && concurrently --success first --handle-input \"smac start -f smac-nukkit.json\" \"tsc -w\"",
+		"start:bukkit": "tsc && concurrently --success first --handle-input \"smac start\" \"tsc -w\""
+	},
+	"smaPluginConfig": {
+		"scriptcraft_load_dir": "autoload"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "tsc && lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{ts,json,css,md}": [
+			"prettier --write",
+			"tsc",
+			"git add"
+		]
+	},
+	"devDependencies": {
+		"@magikcraft/op-all": "^1.0.0",
+		"@scriptcraft/types": "^1.0.2",
+		"@types/jasmine": "^3.3.13",
+		"concurrently": "^4.1.1",
+		"husky": "^3.0.0",
+		"lint-staged": "^9.2.0",
+		"prettier": "^1.18.2"
+	},
+	"dependencies": {
+		"@magikcraft/core": "^0.1.0"
+	}
+}

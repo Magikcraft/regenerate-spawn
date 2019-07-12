@@ -1,0 +1,27 @@
+{
+	"name": "regenerate-spawn-server",
+	"version": "1.0.0",
+	"keywords": ["scriptcraft", "scriptcraft-sma", "server"],
+	"author": "",
+	"license": "ISC",
+	"smaServerConfig": {
+		"dockerTag": "latest",
+		"serverName": "regenerate-spawn-server",
+		"serverType": "bukkit",
+		"memory": "1024",
+		"node_modules": true,
+		"bind": [
+			{
+				"src": "./",
+				"dst": "scriptcraft-plugins/@magikcraft/regenerate-spawn"
+			},
+			{
+				"src": "./node_modules/@magikcraft/op-all",
+				"dst": "scriptcraft-plugins/@magikcraft/op-all"
+			}
+		]
+	},
+	"dependencies": {
+		"@magikcraft/op-all": "^1.0.0"
+	}
+}
