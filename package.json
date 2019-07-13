@@ -1,6 +1,6 @@
 {
 	"name": "@magikcraft/regenerate-spawn",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"main": "lib/index.ts",
 	"scripts": {
 		"test": "smac start -t -e",
@@ -33,6 +33,6 @@
 		"prettier": "^1.18.2"
 	},
 	"dependencies": {
-		"@magikcraft/core": "^0.1.0"
+		"@magikcraft/commando": "0.0.4"
 	}
 }

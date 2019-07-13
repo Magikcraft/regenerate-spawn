@@ -1,4 +1,4 @@
-import { commando } from '@magikcraft/core'
+import commando from '@magikcraft/commando'
 import { Logger } from '@magikcraft/regenerate-spawn/lib/log'
 import * as utils from 'utils'
 
