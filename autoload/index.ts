@@ -10,18 +10,20 @@ log('@magikcraft/regenerate-spawn loaded!')
 // @TODO take a list of worlds to regen spawn points in
 const periodMinutes = 5 // every 5 minutes
 const radius = 3
+const world = utils.world('world')
+const spawn = world.getSpawnLocation()
 
-const regenerate = () => {
+const regenerate = async () => {
 	log('Regenerating spawn...')
-	const world = utils.world('world')
-	const spawn = world.getSpawnLocation()
-	const { x, z } = spawn.getChunk()
+
+	const chunk = spawn.getChunk()
+	const x = chunk.getX()
+	const z = chunk.getZ()
 	for (let dx = 0 - radius; dx < radius; dx++) {
 		for (let dz = 0 - radius; dz < radius; dz++) {
-			setTimeout(() => {
-				console.log(`Regenerating ${dx} ${dz}`)
-				world.regenerateChunk(x + dx, z + dz)
-			}, dx * dz * 500)
+			await setTimeout(() => {}, 1000)
+			console.log(`Regenerating ${dx} ${dz}`)
+			world.regenerateChunk(x + dx, z + dz)
 		}
 	}
 }
