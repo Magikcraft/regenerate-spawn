@@ -13,30 +13,29 @@ const radius = 3
 const world = utils.world('world')
 const spawn = world.getSpawnLocation()
 
-const regenerate = async () => {
-	log('Regenerating spawn...')
+const chunk = spawn.getChunk()
+const x = chunk.getX()
+const z = chunk.getZ()
 
-	const chunk = spawn.getChunk()
-	const x = chunk.getX()
-	const z = chunk.getZ()
-	for (let dx = 0 - radius; dx < radius; dx++) {
-		for (let dz = 0 - radius; dz < radius; dz++) {
-			await setTimeout(() => {}, 1000)
+for (let dx = 0 - radius; dx < radius; dx++) {
+	for (let dz = 0 - radius; dz < radius; dz++) {
+		setInterval(() => {
 			console.log(`Regenerating ${dx} ${dz}`)
 			world.regenerateChunk(x + dx, z + dz)
-		}
+		}, periodMinutes * 60000 + dx * 100)
 	}
 }
-
-setTimeout(regenerate, periodMinutes * 60 * 1000)
-;(global as any).__regenerate = regenerate
 
 log(`Spawn Regeneration loaded with ${periodMinutes} minute period`)
 log(`Available as command: /regenerate-spawn`)
 
 commando('regenerate-spawn', (args, player) => {
 	console.log(`regenerate-spawn command called by ${player.name}`)
-	regenerate()
+	for (let dx = 0 - radius; dx < radius; dx++) {
+		for (let dz = 0 - radius; dz < radius; dz++) {
+			world.regenerateChunk(x + dx, z + dz)
+		}
+	}
 	return true
 })
 
